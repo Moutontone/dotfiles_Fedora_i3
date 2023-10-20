@@ -1,2 +1,2 @@
-require("armand.remap")
 require("armand.set")
+require("armand.remap")
