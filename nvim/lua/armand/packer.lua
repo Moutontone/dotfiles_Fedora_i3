@@ -68,10 +68,37 @@ return require('packer').startup(function(use)
     use {
         'jay-babu/mason-null-ls.nvim',
         requires = {
-            {'williamboman/mason.nvim'},
-            {'jose-elias-alvarez/null-ls.nvim'},
+            { 'williamboman/mason.nvim' },
+            { 'jose-elias-alvarez/null-ls.nvim' },
         }
     }
+
+    -- neorg
+    -- for taking notes
+    use {
+        "nvim-neorg/neorg",
+        config = function()
+            require('neorg').setup {
+                load = {
+                    ["core.defaults"] = {}, -- Loads default behaviour
+                    ["core.concealer"] = {}, -- Adds pretty icons to your documents
+                    ["core.dirman"] = {  -- Manages Neorg workspaces
+                        config = {
+                            workspaces = {
+                                notes = "~/notes",
+                            },
+                        },
+                    },
+                },
+            }
+        end,
+        run = ":Neorg sync-parsers",
+        requires = "nvim-lua/plenary.nvim",
+    }
+
+    -- vimtex
+    -- plugin for latex
+    use 'lervag/vimtex'
 
     -- plugins to add
     -- vim tmux navigato
